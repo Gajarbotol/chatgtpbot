@@ -4,6 +4,7 @@ require('dotenv').config();
 
 // Load environment variables
 const token = process.env.TELEGRAM_BOT_TOKEN;
+const PORT = process.env.PORT || 3000;
 const bot = new TelegramBot(token, { polling: true });
 
 // Define the API URL and channel IDs
@@ -112,4 +113,10 @@ bot.on('message', async (msg) => {
       });
     }
   }
+});
+
+// Start the server
+bot.startPolling({
+  port: PORT,
+  host: '0.0.0.0',
 });
